@@ -8,7 +8,7 @@ return {
   height = 24,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 29,
+  nextobjectid = 30,
   properties = {},
   tilesets = {},
   layers = {
@@ -127,9 +127,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 3367.43,
+          x = 3695.43,
           y = 606.114,
-          width = 139.804,
+          width = 471.57,
           height = 833.164,
           rotation = 0,
           visible = true,
@@ -279,7 +279,24 @@ return {
           height = 78,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["flipH"] = false
+          }
+        },
+        {
+          id = 29,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 3608,
+          y = 681,
+          width = 72,
+          height = 78,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["flipH"] = true
+          }
         }
       }
     },

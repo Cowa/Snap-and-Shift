@@ -12,7 +12,7 @@ local Player = class("Player", Entity)
 function Player:initialize(world, x, y, camera)
   Entity.initialize(self, world, x, y, 64, 100)
   self.speed = 150
-  self.jump = 8000
+  self.jump = 15000
 
   self.img = cache:getOrLoadImage("asset/player.png")
 
