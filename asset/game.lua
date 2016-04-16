@@ -8,7 +8,7 @@ return {
   height = 12,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 5,
+  nextobjectid = 7,
   properties = {},
   tilesets = {},
   layers = {
@@ -112,6 +112,36 @@ return {
           y = 383.786,
           width = 80,
           height = 193,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["toShape"] = "half-height"
+          }
+        },
+        {
+          id = 5,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 478.902,
+          y = 308.847,
+          width = 80,
+          height = 136.747,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["toShape"] = "half-height"
+          }
+        },
+        {
+          id = 6,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 888.561,
+          y = 282.352,
+          width = 80,
+          height = 75.5605,
           rotation = 0,
           visible = true,
           properties = {

@@ -24,6 +24,11 @@ function Player:update(dt)
 end
 
 function Player:moveCamera(x, y)
+  local distance = math.dist(x, y, self.x, self.y)
+
+  -- cannot move camera too far from player
+  if distance > 350 then return end
+
   self.camera:move(x, y)
 end
 
