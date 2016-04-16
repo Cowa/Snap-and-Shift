@@ -21,6 +21,10 @@ function love.update(dt)
   end
 end
 
+function love.mousepressed(x, y, button)
+  GameState.current():mousePressed(x, y, button)
+end
+
 function love.draw()
   GameState.current():draw()
 end

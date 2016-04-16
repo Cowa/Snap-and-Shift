@@ -9,6 +9,8 @@ local tween = require "lib/tween"
 
 local Player = require "entity/player"
 local Block = require "entity/block"
+local Camera = require "entity/camera"
+local Shiftable = require "entity/shiftable"
 
 local Game = {}
 
@@ -31,8 +33,15 @@ function Game:init()
     Block:new(self.world, e.x, e.y, e.width, e.height)
   end)
 
+  self.shiftables = _.map(self.map.layers["shiftables"].objects, function (i, e)
+    return Shiftable:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
+  local playerCamera = self.map.layers["camera"].objects[1]
+  playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y, playerCamera.width, playerCamera.height)
+
   local p = self.map.layers["player"].objects[1]
-  self.player = Player:new(self.world, p.x, p.y)
+  self.player = Player:new(self.world, p.x, p.y, playerCamera)
 end
 
 function Game:update(dt)
@@ -40,11 +49,29 @@ function Game:update(dt)
   self.camera:setPosition(self.player.x, self.player.y)
 
   self.player:update(dt)
+
+  local x, y = love.mouse.getPosition()
+  x, y = self.camera:toWorld(x, y)
+
+  self.player:moveCamera(x, y)
+
+  _.each(self.shiftables, function (i, s) s:update(dt) end)
 end
+
+function Game:mousePressed(x, y, button)
+  local x, y = love.mouse.getPosition()
+  x, y = self.camera:toWorld(x, y)
+
+  self.player:mousePressed(x, y, button)
+end
+
 
 function Game:draw()
   self.camera:draw(function(l, t, w, h)
     self.map:draw()
+
+    _.each(self.shiftables, function (i, s) s:draw() end)
+
     self.player:draw()
   end)
 end

@@ -15,6 +15,10 @@ function Entity:remove()
   self.removed = true
 end
 
+function Entity:update(dt)
+
+end
+
 function Entity:filter(other)
   local kind = other.class.name
   if kind == 'Rock' then return 'slide' end

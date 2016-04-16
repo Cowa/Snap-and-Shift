@@ -8,7 +8,7 @@ return {
   height = 12,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 3,
+  nextobjectid = 5,
   properties = {},
   tilesets = {},
   layers = {
@@ -25,7 +25,7 @@ return {
     {
       type = "objectgroup",
       name = "blocks",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -49,7 +49,7 @@ return {
     {
       type = "objectgroup",
       name = "player",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -67,6 +67,56 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "camera",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 3,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 195,
+          y = 342,
+          width = 325,
+          height = 250,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "shiftables",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 720,
+          y = 383.786,
+          width = 80,
+          height = 193,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["toShape"] = "half-height"
+          }
         }
       }
     }
