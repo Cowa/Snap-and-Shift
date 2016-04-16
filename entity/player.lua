@@ -11,8 +11,10 @@ local Player = class("Player", Entity)
 
 function Player:initialize(world, x, y, camera)
   Entity.initialize(self, world, x, y, 64, 100)
-  self.speed = 150
-  self.jump = 15000
+
+  self.speed = 200
+  self.gravity = 600
+  self.jumpVelocity = 400
 
   self.img = cache:getOrLoadImage("asset/player.png")
 
@@ -20,8 +22,8 @@ function Player:initialize(world, x, y, camera)
 end
 
 function Player:update(dt)
-  self:changeVelocityByInput(dt)
   self:changeVelocityByGravity(dt)
+  self:changeVelocityByInput(dt)
   self:move(dt)
 
   self.camera:update(dt)
@@ -51,8 +53,8 @@ end
 function Player:move(dt)
   self.isOnGround = false
 
-  local futureX = self.x + self.vx * dt
-  local futureY = self.y + self.vy * dt
+  local futureX = self.x + dt * self.vx
+  local futureY = self.y + dt * self.vy
 
   local actualX, actualY, cols, len = self.world:move(self, futureX, futureY, self.filter)
 
@@ -74,31 +76,32 @@ function Player:filter(other)
 end
 
 function Player:changeVelocityByGravity(dt)
-  self.vy = self.vy + self.gravity * dt
+  if self.isOnGround then
+    self.vy = 0
+
+  else
+    self.vy = self.vy + self.gravity * dt
+  end
 end
 
 function Player:changeVelocityByInput(dt)
   if love.keyboard.isDown("right") then
     self.vx = self.speed
-    self.position = "right"
 
   elseif love.keyboard.isDown("left") then
     self.vx = -self.speed
-    self.position = "left"
 
   else
     self.vx = 0
-    self.position = "stand"
   end
 
-  print(self.isOnGround)
   if love.keyboard.isDown("up") and self.isOnGround then
-    self.vy = -self.jump
-    self.position = "swim"
-
-  else
-    self.vy = 0
+    self:doJump()
   end
+end
+
+function Player:doJump(dt)
+  self.vy = -self.jumpVelocity
 end
 
 function Player:draw()
