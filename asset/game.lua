@@ -8,7 +8,7 @@ return {
   height = 12,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 12,
+  nextobjectid = 13,
   properties = {},
   tilesets = {},
   layers = {
@@ -151,6 +151,30 @@ return {
           y = 356,
           width = 66.226,
           height = 231,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "barrels",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 12,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 584,
+          y = 476,
+          width = 105,
+          height = 112,
           rotation = 0,
           visible = true,
           properties = {}

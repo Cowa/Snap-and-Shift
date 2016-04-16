@@ -62,6 +62,7 @@ end
 function Player:filter(other)
   if other:isInstanceOf(Block)
   or other:isInstanceOf(BlockingShiftable)
+  and not other.removed
   then
     return "slide"
   end

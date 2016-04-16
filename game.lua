@@ -10,6 +10,7 @@ local tween = require "lib/tween"
 local Player = require "entity/player"
 local Block = require "entity/block"
 local Camera = require "entity/camera"
+local Barrel = require "entity/barrel"
 local Pillar = require "entity/pillar"
 local Shiftable = require "entity/shiftable"
 local BlockingShiftable = require "entity/blocking-shiftable"
@@ -39,6 +40,10 @@ function Game:init()
     return Pillar:new(self.world, e.x, e.y, e.width, e.height, e.properties)
   end)
 
+  self.barrels = _.map(self.map.layers["barrels"].objects, function (i, e)
+    return Barrel:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
   local playerCamera = self.map.layers["camera"].objects[1]
   playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y, playerCamera.width, playerCamera.height)
 
@@ -58,6 +63,7 @@ function Game:update(dt)
   self.player:moveCamera(x, y)
 
   _.each(self.pillars, function (i, s) s:update(dt) end)
+  _.each(self.barrels, function (i, s) s:update(dt) end)
 end
 
 function Game:mousePressed(x, y, button)
@@ -72,6 +78,7 @@ function Game:draw()
   self.camera:draw(function(l, t, w, h)
     self.map:draw()
     _.each(self.pillars, function (i, s) s:draw() end)
+    _.each(self.barrels, function (i, s) s:draw() end)
     self.player:draw()
   end)
 end
