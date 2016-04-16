@@ -12,6 +12,9 @@ local Block = require "entity/block"
 local Camera = require "entity/camera"
 local Barrel = require "entity/barrel"
 local Pillar = require "entity/pillar"
+local Branch = require "entity/branch"
+local Dirt = require "entity/dirt"
+local Bush = require "entity/bush"
 local Shiftable = require "entity/shiftable"
 local BlockingShiftable = require "entity/blocking-shiftable"
 
@@ -22,7 +25,7 @@ function Game:init()
   self.heightCamera = 720
 
   self.widthWorld = 5000
-  self.heightWorld = 720
+  self.heightWorld = 1440
 
   self.camera = gamera.new(0, 0, self.widthWorld, self.heightWorld)
   self.camera:setWindow(0, 0, self.widthCamera, self.heightCamera)
@@ -44,11 +47,27 @@ function Game:init()
     return Barrel:new(self.world, e.x, e.y, e.width, e.height, e.properties)
   end)
 
+  self.branches = _.map(self.map.layers["branches"].objects, function (i, e)
+    return Branch:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
+  self.dirts = _.map(self.map.layers["dirts"].objects, function (i, e)
+    return Dirt:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
+  self.bushes = _.map(self.map.layers["bushes"].objects, function (i, e)
+    return Bush:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
   local playerCamera = self.map.layers["camera"].objects[1]
   playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y, playerCamera.width, playerCamera.height)
 
   local p = self.map.layers["player"].objects[1]
   self.player = Player:new(self.world, p.x, p.y, playerCamera)
+end
+
+function Game:enter()
+  love.mouse.setVisible(false)
 end
 
 function Game:update(dt)
@@ -64,6 +83,9 @@ function Game:update(dt)
 
   _.each(self.pillars, function (i, s) s:update(dt) end)
   _.each(self.barrels, function (i, s) s:update(dt) end)
+  _.each(self.branches, function (i, s) s:update(dt) end)
+  _.each(self.dirts, function (i, s) s:update(dt) end)
+  _.each(self.bushes, function (i, s) s:update(dt) end)
 end
 
 function Game:mousePressed(x, y, button)
@@ -79,6 +101,9 @@ function Game:draw()
     self.map:draw()
     _.each(self.pillars, function (i, s) s:draw() end)
     _.each(self.barrels, function (i, s) s:draw() end)
+    _.each(self.branches, function (i, s) s:draw() end)
+    _.each(self.dirts, function (i, s) s:draw() end)
+    _.each(self.bushes, function (i, s) s:draw() end)
     self.player:draw()
   end)
 end

@@ -7,7 +7,7 @@ function Entity:initialize(world, x, y, w, h)
   self.vx, self.vy = 0, 0
   self.world:add(self, x, y, w, h)
   self.removed = false
-  self.gravity = 10000
+  self.gravity = 20000
 
   self.isOnGround = false
 end
