@@ -14,25 +14,12 @@ function Shiftable:initialize(world, x, y, w, h, properties)
   self.shifted = false
 end
 
-function Shiftable:draw()
-  love.graphics.setColor(0, 100, 255, 255)
-  love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
+function Shiftable:shift()
+
 end
 
-function Shiftable:shift()
-  if not self.shifted then
-    self.h = self.h / 2
+function Shiftable:draw()
 
-  else
-    self.x = self.initial.x
-    self.y = self.initial.y
-    self.w = self.initial.w
-    self.h = self.initial.h
-  end
-
-  self.world:update(self, self.x, self.y, self.w, self.h)
-
-  self.shifted = not self.shifted
 end
 
 return Shiftable

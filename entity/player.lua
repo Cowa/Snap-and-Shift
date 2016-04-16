@@ -4,13 +4,17 @@ local class = require "lib/middleclass"
 local cache = require "cache"
 
 local Entity = require "entity/entity"
+local Block = require "entity/block"
+local BlockingShiftable = require "entity/blocking-shiftable"
 
 local Player = class("Player", Entity)
 
 function Player:initialize(world, x, y, camera)
-  Entity.initialize(self, world, x, y, 64, 64)
+  Entity.initialize(self, world, x, y, 64, 100)
   self.speed = 150
-  self.jump = 500
+  self.jump = 8000
+
+  self.img = cache:getOrLoadImage("asset/player.png")
 
   self.camera = camera
 end
@@ -23,12 +27,13 @@ function Player:update(dt)
   self.camera:update(dt)
 end
 
+function Player:checkIfOnGround(ny)
+  if ny < 0 then
+    self.isOnGround = true
+  end
+end
+
 function Player:moveCamera(x, y)
-  local distance = math.dist(x, y, self.x, self.y)
-
-  -- cannot move camera too far from player
-  if distance > 350 then return end
-
   self.camera:move(x, y)
 end
 
@@ -39,27 +44,26 @@ function Player:mousePressed(x, y, button)
 end
 
 function Player:move(dt)
+  self.isOnGround = false
+
   local futureX = self.x + self.vx * dt
   local futureY = self.y + self.vy * dt
 
   local actualX, actualY, cols, len = self.world:move(self, futureX, futureY, self.filter)
 
+  _.each(cols, function (i, e)
+    self:checkIfOnGround(e.normal.y)
+  end)
+
   self.x = actualX
   self.y = actualY
-
-  _.each(cols, function (i, o)
-    if o.other.class.name == "Camera" then
-
-    end
-  end)
 end
 
 function Player:filter(other)
-  local kind = other.class.name
-  if kind == "Block" or kind == "Shiftable" then
+  if other:isInstanceOf(Block)
+  or other:isInstanceOf(BlockingShiftable)
+  then
     return "slide"
-  elseif kind == "Camera" then
-    return "cross"
   end
 end
 
@@ -81,12 +85,10 @@ function Player:changeVelocityByInput(dt)
     self.position = "stand"
   end
 
-  if love.keyboard.isDown("up") then
+  print(self.isOnGround)
+  if love.keyboard.isDown("up") and self.isOnGround then
     self.vy = -self.jump
     self.position = "swim"
-
-  elseif love.keyboard.isDown("down") then
-    self.vy = self.jump
 
   else
     self.vy = 0
@@ -94,9 +96,7 @@ function Player:changeVelocityByInput(dt)
 end
 
 function Player:draw()
-  love.graphics.setColor(255, 255, 255, 255)
-  love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
-
+  love.graphics.draw(self.img, self.x, self.y)
   self.camera:draw()
 end
 

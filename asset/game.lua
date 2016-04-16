@@ -8,7 +8,7 @@ return {
   height = 12,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 7,
+  nextobjectid = 12,
   properties = {},
   tilesets = {},
   layers = {
@@ -37,9 +37,35 @@ return {
           type = "",
           shape = "rectangle",
           x = 0,
-          y = 576.205,
+          y = 587,
           width = 1280,
-          height = 140,
+          height = 129,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 10,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -139.804,
+          y = -3.99441,
+          width = 139.804,
+          height = 720.991,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 11,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1280.21,
+          y = -2.996,
+          width = 139.804,
+          height = 720.991,
           rotation = 0,
           visible = true,
           properties = {}
@@ -96,7 +122,7 @@ return {
     },
     {
       type = "objectgroup",
-      name = "shiftables",
+      name = "pillars",
       visible = false,
       opacity = 1,
       offsetx = 0,
@@ -104,49 +130,30 @@ return {
       properties = {},
       objects = {
         {
-          id = 4,
+          id = 7,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 720,
-          y = 383.786,
-          width = 80,
-          height = 193,
+          x = 338,
+          y = 356,
+          width = 66.226,
+          height = 231,
           rotation = 0,
           visible = true,
-          properties = {
-            ["toShape"] = "half-height"
-          }
+          properties = {}
         },
         {
-          id = 5,
+          id = 9,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 478.902,
-          y = 308.847,
-          width = 80,
-          height = 136.747,
+          x = 897,
+          y = 356,
+          width = 66.226,
+          height = 231,
           rotation = 0,
           visible = true,
-          properties = {
-            ["toShape"] = "half-height"
-          }
-        },
-        {
-          id = 6,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 888.561,
-          y = 282.352,
-          width = 80,
-          height = 75.5605,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["toShape"] = "half-height"
-          }
+          properties = {}
         }
       }
     }

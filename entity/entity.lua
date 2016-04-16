@@ -4,10 +4,12 @@ local Entity = class("Entity")
 
 function Entity:initialize(world, x, y, w, h)
   self.world, self.x, self.y, self.w, self.h = world, x, y, w, h
-  self.vx, self.vy = 0,0
+  self.vx, self.vy = 0, 0
   self.world:add(self, x, y, w, h)
   self.removed = false
-  self.gravity = 6000
+  self.gravity = 10000
+
+  self.isOnGround = false
 end
 
 function Entity:remove()

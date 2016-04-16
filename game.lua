@@ -10,7 +10,9 @@ local tween = require "lib/tween"
 local Player = require "entity/player"
 local Block = require "entity/block"
 local Camera = require "entity/camera"
+local Pillar = require "entity/pillar"
 local Shiftable = require "entity/shiftable"
+local BlockingShiftable = require "entity/blocking-shiftable"
 
 local Game = {}
 
@@ -19,7 +21,7 @@ function Game:init()
   self.heightCamera = 720
 
   self.widthWorld = 5000
-  self.heightWorld = 2000
+  self.heightWorld = 720
 
   self.camera = gamera.new(0, 0, self.widthWorld, self.heightWorld)
   self.camera:setWindow(0, 0, self.widthCamera, self.heightCamera)
@@ -33,8 +35,8 @@ function Game:init()
     Block:new(self.world, e.x, e.y, e.width, e.height)
   end)
 
-  self.shiftables = _.map(self.map.layers["shiftables"].objects, function (i, e)
-    return Shiftable:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  self.pillars = _.map(self.map.layers["pillars"].objects, function (i, e)
+    return Pillar:new(self.world, e.x, e.y, e.width, e.height, e.properties)
   end)
 
   local playerCamera = self.map.layers["camera"].objects[1]
@@ -55,7 +57,7 @@ function Game:update(dt)
 
   self.player:moveCamera(x, y)
 
-  _.each(self.shiftables, function (i, s) s:update(dt) end)
+  _.each(self.pillars, function (i, s) s:update(dt) end)
 end
 
 function Game:mousePressed(x, y, button)
@@ -69,9 +71,7 @@ end
 function Game:draw()
   self.camera:draw(function(l, t, w, h)
     self.map:draw()
-
-    _.each(self.shiftables, function (i, s) s:draw() end)
-
+    _.each(self.pillars, function (i, s) s:draw() end)
     self.player:draw()
   end)
 end
