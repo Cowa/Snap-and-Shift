@@ -65,8 +65,9 @@ function Player:move(dt)
   local actualX, actualY, cols, len = self.world:move(self, futureX, futureY, self.filter)
 
   _.each(cols, function (i, e)
-    if e.other:isInstanceOf(Checkpoint) then
+    if e.other:isInstanceOf(Checkpoint) and not e.other.used then
       self.lastCheckpoint = e.other
+      e.other.used = true
     else
       self:checkIfOnGround(e.normal.y)
     end

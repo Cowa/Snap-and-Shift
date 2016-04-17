@@ -12,6 +12,9 @@ function Checkpoint:initialize(world, x, y, w, h, properties)
 
   local g = anim8.newGrid(77, 103, self.img:getWidth(), self.img:getHeight())
   self.shiftedImg = anim8.newAnimation(g('1-1', 1), 1)
+
+  -- one use (once crossed by player)
+  self.used = false
 end
 
 function Checkpoint:shift()
