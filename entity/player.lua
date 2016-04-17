@@ -20,6 +20,10 @@ function Player:initialize(world, x, y, camera)
 
   local g = anim8.newGrid(92, 100, self.img:getWidth(), self.img:getHeight())
   self.animation = anim8.newAnimation(g('1-1', 1), 1)
+  self.standingAnimation = self.animation
+
+  g = anim8.newGrid(92, 100, self.img:getWidth(), self.img:getHeight(), 92, 0)
+  self.takingPhotoAnimation = anim8.newAnimation(g('1-1', 1), 1)
 
   self.facing = "right"
 
@@ -126,11 +130,14 @@ function Player:changeVelocityByGravity(dt)
 end
 
 function Player:changeVelocityByInput(dt)
-  if love.keyboard.isDown("right") then
+  if love.keyboard.isDown("right")
+  or love.keyboard.isDown("d") then
     self.vx = self.speed
     self.facing = "right"
 
-  elseif love.keyboard.isDown("left") then
+  elseif love.keyboard.isDown("left")
+  or love.keyboard.isDown("q")
+  or love.keyboard.isDown("a") then
     self.vx = -self.speed
     self.facing = "left"
 
@@ -138,7 +145,9 @@ function Player:changeVelocityByInput(dt)
     self.vx = 0
   end
 
-  if (love.keyboard.isDown("space") or love.keyboard.isDown("up"))
+  if (love.keyboard.isDown("up")
+  or love.keyboard.isDown("z")
+  or love.keyboard.isDown("w"))
   and self.isOnGround then
     self:doJump()
   end
@@ -149,6 +158,13 @@ function Player:doJump(dt)
 end
 
 function Player:draw()
+  local takingPhoto = self.camera.takingPhoto
+  if takingPhoto then
+    self.animation = self.takingPhotoAnimation
+  else
+    self.animation = self.standingAnimation
+  end
+
   if self.facing == "left" then
     self.animation:flipH()
     self.animation:draw(self.img, self.x - 28, self.y)

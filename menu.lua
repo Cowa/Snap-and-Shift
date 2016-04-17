@@ -16,7 +16,7 @@ function Menu:init()
 
   self.blackScreen = { opacity = 255 }
   self.enterIn = tween.new(2, self.blackScreen, { opacity = 0 })
-  self.enterOut = tween.new(1, self.blackScreen, { opacity = 255 })
+  self.enterOut = tween.new(2, self.blackScreen, { opacity = 255 })
 
   -- camera photo used as pointer
   self.camera = Camera:new(self.world, 0, 0)
