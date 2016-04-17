@@ -17,6 +17,7 @@ local Dirt = require "entity/dirt"
 local Bush = require "entity/bush"
 local Checkpoint = require "entity/checkpoint"
 local Water = require "entity/water"
+local House = require "entity/house"
 local Shiftable = require "entity/shiftable"
 local BlockingShiftable = require "entity/blocking-shiftable"
 
@@ -69,6 +70,10 @@ function Game:init()
     return Water:new(self.world, e.x, e.y, e.width, e.height, e.properties)
   end)
 
+  self.houses = _.map(self.map.layers["houses"].objects, function (i, e)
+    return House:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
   local playerCamera = self.map.layers["camera"].objects[1]
   playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y, playerCamera.width, playerCamera.height)
 
@@ -98,6 +103,7 @@ function Game:update(dt)
   _.each(self.bushes, function (i, s) s:update(dt) end)
   _.each(self.checkpoints, function (i, s) s:update(dt) end)
   _.each(self.water, function (i, s) s:update(dt) end)
+  _.each(self.houses, function (i, s) s:update(dt) end)
 end
 
 function Game:mousePressed(x, y, button)
@@ -118,6 +124,8 @@ function Game:draw()
     _.each(self.bushes, function (i, s) s:draw() end)
     _.each(self.checkpoints, function (i, s) s:draw() end)
     self.player:draw()
+    _.each(self.houses, function (i, s) s:draw() end)
+    self.player.camera:draw()
   end)
 end
 

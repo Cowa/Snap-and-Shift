@@ -31,8 +31,6 @@ function Player:update(dt)
   self:changeVelocityByInput(dt)
   self:move(dt)
 
-  print(self.lastCheckpoint.x, self.lastCheckpoint.y)
-
   self.camera:update(dt)
 end
 
@@ -137,7 +135,6 @@ end
 
 function Player:draw()
   love.graphics.draw(self.img, self.x, self.y)
-  self.camera:draw()
 end
 
 return Player

@@ -8,7 +8,7 @@ return {
   height = 24,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 34,
+  nextobjectid = 35,
   properties = {},
   tilesets = {},
   layers = {
@@ -177,8 +177,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 62.3664,
-          y = 468.849,
+          x = 3722.03,
+          y = 510.004,
           width = 64,
           height = 64,
           rotation = 0,
@@ -453,6 +453,32 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "houses",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 34,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 4067,
+          y = 181,
+          width = 337,
+          height = 425,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["shiftable"] = true
+          }
         }
       }
     }

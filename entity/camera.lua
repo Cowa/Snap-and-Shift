@@ -65,6 +65,8 @@ function Camera:draw()
 
   love.graphics.setColor(self.flash.color[1], self.flash.color[2], self.flash.color[3], self.flash.opacity)
   love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
+
+  love.graphics.setColor(255, 255, 255, 255)
 end
 
 function Camera:move(x, y)
