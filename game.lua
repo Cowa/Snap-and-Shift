@@ -108,7 +108,11 @@ function Game:update(dt)
   self.player:update(dt)
 
   if self.player.crossedExit then
-    self.enterOut:update(dt)
+    local ended = self.enterOut:update(dt)
+
+    if ended then
+      GameState.switch(End)
+    end
   end
 
   local x, y = love.mouse.getPosition()

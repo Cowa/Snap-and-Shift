@@ -2,6 +2,7 @@ require "util"
 
 Menu = require "menu"
 Game = require "game"
+End = require "end"
 GameState = require "lib/gamestate"
 
 function love.load()
