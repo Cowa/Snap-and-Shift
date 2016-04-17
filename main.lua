@@ -12,7 +12,7 @@ function love.load()
 end
 
 function love.update(dt)
-  love.window.setTitle("FPS: " .. love.timer.getFPS())
+  love.window.setTitle("Snap & Shift | " .. love.timer.getFPS() .. " FPS")
 
   GameState.current():update(dt)
 

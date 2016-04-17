@@ -18,10 +18,16 @@ function Player:initialize(world, x, y, camera)
 
   self.img = cache:getOrLoadImage("asset/player.png")
 
+  local g = anim8.newGrid(92, 100, self.img:getWidth(), self.img:getHeight())
+  self.animation = anim8.newAnimation(g('1-1', 1), 1)
+
+  self.facing = "right"
+
   -- by default first position of player
   self.lastCheckpoint = { x = x, y = y }
 
   self.die = false
+  self.crossedExit = false
 
   self.camera = camera
 end
@@ -76,6 +82,9 @@ function Player:move(dt)
     elseif e.other.class.name == "Water" then
       self.die = true
 
+    elseif e.other.class.name == "Exit" then
+      self.crossedExit = true
+
     elseif e.other:isInstanceOf(Block)
         or e.other:isInstanceOf(BlockingShiftable) then
       self:checkIfOnGround(e.normal.y)
@@ -92,7 +101,9 @@ function Player:toLastCheckPoint()
 end
 
 function Player:filter(other)
-  if other.class.name == "Checkpoint" or other.class.name == "Water" then
+  if other.class.name == "Checkpoint"
+  or other.class.name == "Water"
+  or other.class.name == "Exit" then
     return "cross"
 
   elseif other:isInstanceOf(Block)
@@ -116,9 +127,11 @@ end
 function Player:changeVelocityByInput(dt)
   if love.keyboard.isDown("right") then
     self.vx = self.speed
+    self.facing = "right"
 
   elseif love.keyboard.isDown("left") then
     self.vx = -self.speed
+    self.facing = "left"
 
   else
     self.vx = 0
@@ -134,7 +147,14 @@ function Player:doJump(dt)
 end
 
 function Player:draw()
-  love.graphics.draw(self.img, self.x, self.y)
+  if self.facing == "left" then
+    self.animation:flipH()
+    self.animation:draw(self.img, self.x - 28, self.y)
+    self.animation:flipH()
+
+  else
+    self.animation:draw(self.img, self.x, self.y)
+  end
 end
 
 return Player

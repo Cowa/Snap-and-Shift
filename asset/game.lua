@@ -8,7 +8,7 @@ return {
   height = 24,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 35,
+  nextobjectid = 40,
   properties = {},
   tilesets = {},
   layers = {
@@ -37,7 +37,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 0,
-          y = 587,
+          y = 588,
           width = 1280,
           height = 129,
           rotation = 0,
@@ -76,7 +76,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 1280.82,
-          y = 511.674,
+          y = 512.674,
           width = 407.475,
           height = 129,
           rotation = 0,
@@ -89,7 +89,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 1689.59,
-          y = 451.981,
+          y = 452.981,
           width = 254.347,
           height = 129,
           rotation = 0,
@@ -177,8 +177,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 3722.03,
-          y = 510.004,
+          x = 98.4348,
+          y = 403.577,
           width = 64,
           height = 64,
           rotation = 0,
@@ -266,7 +266,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 584,
+          x = 605,
           y = 476,
           width = 105,
           height = 112,
@@ -283,6 +283,21 @@ return {
           shape = "rectangle",
           x = 1052,
           y = 476,
+          width = 105,
+          height = 112,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["shifted"] = false
+          }
+        },
+        {
+          id = 35,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 3775,
+          y = 494,
           width = 105,
           height = 112,
           rotation = 0,
@@ -422,7 +437,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 2130,
+          x = 2148,
           y = 194,
           width = 77,
           height = 103,
@@ -479,6 +494,67 @@ return {
           properties = {
             ["shiftable"] = true
           }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "exit",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 36,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 4284.81,
+          y = 410,
+          width = 116.191,
+          height = 195,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "leaves",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 38,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 23.1997,
+          y = 63.2667,
+          width = 191.3,
+          height = 33.2647,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 39,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1763.51,
+          y = 50.0819,
+          width = 228.101,
+          height = 33.2647,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     }

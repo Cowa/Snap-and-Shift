@@ -18,6 +18,8 @@ local Bush = require "entity/bush"
 local Checkpoint = require "entity/checkpoint"
 local Water = require "entity/water"
 local House = require "entity/house"
+local Exit = require "entity/exit"
+local Leaf = require "entity/leaf"
 local Shiftable = require "entity/shiftable"
 local BlockingShiftable = require "entity/blocking-shiftable"
 
@@ -37,6 +39,10 @@ function Game:init()
   self.world = bump.newWorld(64)
 
   self.map = sti.new("asset/game.lua")
+
+  self.blackScreen = { opacity = 255 }
+  self.enterIn = tween.new(4, self.blackScreen, { opacity = 0 })
+  self.enterOut = tween.new(2, self.blackScreen, { opacity = 255 })
 
   _.each(self.map.layers["blocks"].objects, function (i, e)
     Block:new(self.world, e.x, e.y, e.width, e.height)
@@ -74,6 +80,14 @@ function Game:init()
     return House:new(self.world, e.x, e.y, e.width, e.height, e.properties)
   end)
 
+  self.exit = _.map(self.map.layers["exit"].objects, function (i, e)
+    return Exit:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
+  self.leaves = _.map(self.map.layers["leaves"].objects, function (i, e)
+    return Leaf:new(self.world, e.x, e.y, e.width, e.height, e.properties)
+  end)
+
   local playerCamera = self.map.layers["camera"].objects[1]
   playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y, playerCamera.width, playerCamera.height)
 
@@ -87,9 +101,15 @@ end
 
 function Game:update(dt)
   self.map:update(dt)
+  self.enterIn:update(dt)
+
   self.camera:setPosition(self.player.x, self.player.y)
 
   self.player:update(dt)
+
+  if self.player.crossedExit then
+    self.enterOut:update(dt)
+  end
 
   local x, y = love.mouse.getPosition()
   x, y = self.camera:toWorld(x, y)
@@ -104,6 +124,7 @@ function Game:update(dt)
   _.each(self.checkpoints, function (i, s) s:update(dt) end)
   _.each(self.water, function (i, s) s:update(dt) end)
   _.each(self.houses, function (i, s) s:update(dt) end)
+  _.each(self.leaves, function (i, s) s:update(dt) end)
 end
 
 function Game:mousePressed(x, y, button)
@@ -125,8 +146,13 @@ function Game:draw()
     _.each(self.checkpoints, function (i, s) s:draw() end)
     self.player:draw()
     _.each(self.houses, function (i, s) s:draw() end)
+    _.each(self.leaves, function (i, s) s:draw() end)
     self.player.camera:draw()
   end)
+
+  love.graphics.setColor(0, 0, 0, self.blackScreen.opacity)
+  love.graphics.rectangle("fill", 0, 0, 1280, 720)
+  love.graphics.setColor(255, 255, 255, 255)
 end
 
 return Game
