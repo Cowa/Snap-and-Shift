@@ -78,7 +78,8 @@ function Player:move(dt)
   _.each(cols, function (i, e)
     if e.other.class.name == "Checkpoint" and not e.other.used then
       self.lastCheckpoint = e.other
-      e.other.used = true
+      e.other:crossedByPlayer()
+
     elseif e.other.class.name == "Water" then
       self.die = true
 

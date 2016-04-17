@@ -16,7 +16,7 @@
   <object id="32" x="4400.53" y="-0.555459" width="144.528" height="693.796"/>
  </objectgroup>
  <objectgroup name="player" visible="0">
-  <object id="2" x="98.4348" y="403.577" width="64" height="64"/>
+  <object id="2" x="1929.58" y="222.998" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="camera" visible="0">
   <object id="3" x="195" y="342" width="325" height="250"/>
@@ -87,7 +87,7 @@
   <object id="36" x="4284.81" y="410" width="116.191" height="195"/>
  </objectgroup>
  <objectgroup name="leaves" visible="0">
-  <object id="38" x="23.1997" y="63.2667" width="191.3" height="33.2647"/>
-  <object id="39" x="1763.51" y="50.0819" width="228.101" height="33.2647"/>
+  <object id="38" x="-12.416" y="84.2667" width="212.916" height="33.2647"/>
+  <object id="39" x="1618.88" y="56.0819" width="348.727" height="33.2647"/>
  </objectgroup>
 </map>
