@@ -5,7 +5,6 @@ local cache = require "cache"
 
 local Entity = require "entity/entity"
 local Block = require "entity/block"
-local Checkpoint = require "entity/checkpoint"
 local BlockingShiftable = require "entity/blocking-shiftable"
 
 local Player = class("Player", Entity)
@@ -21,6 +20,8 @@ function Player:initialize(world, x, y, camera)
 
   -- by default first position of player
   self.lastCheckpoint = { x = x, y = y }
+
+  self.die = false
 
   self.camera = camera
 end
@@ -57,6 +58,12 @@ function Player:mousePressed(x, y, button)
 end
 
 function Player:move(dt)
+  if self.die then
+    self:toLastCheckPoint()
+    self.die = false
+    return
+ end
+
   self.isOnGround = false
 
   local futureX = self.x + dt * self.vx
@@ -65,10 +72,14 @@ function Player:move(dt)
   local actualX, actualY, cols, len = self.world:move(self, futureX, futureY, self.filter)
 
   _.each(cols, function (i, e)
-    if e.other:isInstanceOf(Checkpoint) and not e.other.used then
+    if e.other.class.name == "Checkpoint" and not e.other.used then
       self.lastCheckpoint = e.other
       e.other.used = true
-    else
+    elseif e.other.class.name == "Water" then
+      self.die = true
+
+    elseif e.other:isInstanceOf(Block)
+        or e.other:isInstanceOf(BlockingShiftable) then
       self:checkIfOnGround(e.normal.y)
     end
   end)
@@ -77,8 +88,13 @@ function Player:move(dt)
   self.y = actualY
 end
 
+function Player:toLastCheckPoint()
+  self.x, self.y = self.lastCheckpoint.x, self.lastCheckpoint.y
+  self.world:update(self, self.x, self.y, self.w, self.h)
+end
+
 function Player:filter(other)
-  if other:isInstanceOf(Checkpoint) then
+  if other.class.name == "Checkpoint" or other.class.name == "Water" then
     return "cross"
 
   elseif other:isInstanceOf(Block)

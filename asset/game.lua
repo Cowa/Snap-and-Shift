@@ -8,7 +8,7 @@ return {
   height = 24,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 31,
+  nextobjectid = 32,
   properties = {},
   tilesets = {},
   layers = {
@@ -392,6 +392,30 @@ return {
           y = 194,
           width = 77,
           height = 103,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "water",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 31,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 2575,
+          y = 1355,
+          width = 1105,
+          height = 82.2967,
           rotation = 0,
           visible = true,
           properties = {}
