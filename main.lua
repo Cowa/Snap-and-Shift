@@ -1,14 +1,15 @@
 require "util"
 
-local Game = require "game"
-local GameState = require "lib/gamestate"
+Menu = require "menu"
+Game = require "game"
+GameState = require "lib/gamestate"
 
 function love.load()
   math.randomseed(os.time())
   love.keyboard.setKeyRepeat(true)
 
   GameState.registerEvents()
-  GameState.switch(Game)
+  GameState.switch(Menu)
 end
 
 function love.update(dt)

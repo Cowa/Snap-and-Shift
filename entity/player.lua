@@ -138,7 +138,8 @@ function Player:changeVelocityByInput(dt)
     self.vx = 0
   end
 
-  if love.keyboard.isDown("up") and self.isOnGround then
+  if (love.keyboard.isDown("space") or love.keyboard.isDown("up"))
+  and self.isOnGround then
     self:doJump()
   end
 end

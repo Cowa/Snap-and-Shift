@@ -8,8 +8,8 @@ local Camera = class("Camera", Entity)
 local Shiftable = require "entity/shiftable"
 
 -- Camera which take pictures (not game camera!!)
-function Camera:initialize(world, x, y, w, h)
-  Entity.initialize(self, world, x, y, w, h)
+function Camera:initialize(world, x, y)
+  Entity.initialize(self, world, x, y, 325, 250)
 
   self.flash = {
     opacity = 0,

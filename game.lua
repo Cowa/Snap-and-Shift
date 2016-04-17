@@ -89,7 +89,7 @@ function Game:init()
   end)
 
   local playerCamera = self.map.layers["camera"].objects[1]
-  playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y, playerCamera.width, playerCamera.height)
+  playerCamera = Camera:new(self.world, playerCamera.x, playerCamera.y)
 
   local p = self.map.layers["player"].objects[1]
   self.player = Player:new(self.world, p.x, p.y, playerCamera)

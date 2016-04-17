@@ -16,7 +16,7 @@
   <object id="32" x="4400.53" y="-0.555459" width="144.528" height="693.796"/>
  </objectgroup>
  <objectgroup name="player" visible="0">
-  <object id="2" x="1929.58" y="222.998" width="64" height="64"/>
+  <object id="2" x="82.3117" y="455.196" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="camera" visible="0">
   <object id="3" x="195" y="342" width="325" height="250"/>
@@ -74,7 +74,7 @@
   <object id="30" x="2148" y="194" width="77" height="103"/>
  </objectgroup>
  <objectgroup name="water" visible="0">
-  <object id="31" x="2575" y="1355" width="1105" height="82.2967"/>
+  <object id="31" x="2575" y="1038.56" width="1105" height="398.732"/>
  </objectgroup>
  <objectgroup name="houses" visible="0">
   <object id="34" x="4067" y="181" width="337" height="425">
