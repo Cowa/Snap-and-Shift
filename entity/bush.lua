@@ -18,6 +18,7 @@ function Bush:initialize(world, x, y, w, h, properties)
 end
 
 function Bush:shift()
+  self.shiftParticle:start()
   self.shifted = not self.shifted
 end
 
@@ -28,6 +29,8 @@ function Bush:draw()
   else
     self.notShiftedImg:draw(self.img, self.x, self.y)
   end
+
+  self.shiftParticle:draw()
 end
 
 return Bush

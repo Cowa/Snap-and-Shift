@@ -20,6 +20,8 @@ end
 function Pillar:shift()
   if not self.shiftable then return end
 
+  self.shiftParticle:start()
+
   if not self.shifted then
     self.w = 66
     self.h = 100
@@ -43,6 +45,8 @@ function Pillar:draw()
   else
     self.notShiftedImg:draw(self.img, self.x - 20, self.y)
   end
+
+  self.shiftParticle:draw()
 end
 
 return Pillar

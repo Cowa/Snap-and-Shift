@@ -2,6 +2,7 @@ local class = require "lib/middleclass"
 local anim8 = require "lib/anim8"
 local cache = require "cache"
 
+local Smoke = require "entity/smoke"
 local BlockingShiftable = require "entity/blocking-shiftable"
 local Barrel = class("Barrel", BlockingShiftable)
 
@@ -22,7 +23,10 @@ function Barrel:initialize(world, x, y, w, h, properties)
 end
 
 function Barrel:shift()
+  self.shiftParticle:start()
+
   if not self.shifted then
+    self.w = 195
     self.removed = true
 
   else
@@ -33,6 +37,7 @@ function Barrel:shift()
     self.removed = false
   end
 
+  self:updateParticle()
   self.world:update(self, self.x, self.y, self.w, self.h)
 
   self.shifted = not self.shifted
@@ -45,6 +50,8 @@ function Barrel:draw()
   else
     self.notShiftedImg:draw(self.img, self.x, self.y)
   end
+
+  self.shiftParticle:draw()
 end
 
 return Barrel

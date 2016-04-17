@@ -25,6 +25,8 @@ function Branch:initialize(world, x, y, w, h, properties)
 end
 
 function Branch:shift()
+  self.shiftParticle:start()
+
   if not self.shifted then
     self.w = 287
     self.h = 116
@@ -39,6 +41,7 @@ function Branch:shift()
     self.h = self.initial.h
   end
 
+  self:updateParticle()
   self.world:update(self, self.x, self.y, self.w, self.h)
 
   self.shifted = not self.shifted
@@ -60,6 +63,7 @@ function Branch:draw()
       self.notShiftedImg:draw(self.img, self.x - 12, self.y - 15)
     end
   end
+  self.shiftParticle:draw()
 end
 
 return Branch

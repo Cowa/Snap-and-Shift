@@ -18,6 +18,8 @@ function Dirt:initialize(world, x, y, w, h, properties)
 end
 
 function Dirt:shift()
+  self.shiftParticle:start()
+
   if not self.shifted then
     self.w = 287
     self.h = 308
@@ -28,6 +30,7 @@ function Dirt:shift()
     self.h = self.initial.h
   end
 
+  self:updateParticle()
   self.world:update(self, self.x, self.y, self.w, self.h)
 
   self.shifted = not self.shifted
@@ -40,6 +43,8 @@ function Dirt:draw()
   else
     self.notShiftedImg:draw(self.img, self.x, self.y)
   end
+
+  self.shiftParticle:draw()
 end
 
 return Dirt

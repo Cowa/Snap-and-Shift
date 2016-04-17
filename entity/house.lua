@@ -20,6 +20,8 @@ end
 function House:shift()
   if not self.shiftable then return end
 
+  self.shiftParticle:start()
+
   if not self.shifted then
     self.removed = true
     self.shiftable = false
@@ -44,6 +46,7 @@ function House:draw()
   else
     self.notShiftedImg:draw(self.img, self.x - 59, self.y)
   end
+  self.shiftParticle:draw()
 end
 
 return House

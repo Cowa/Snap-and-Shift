@@ -59,8 +59,7 @@ function Camera:update(dt)
 end
 
 function Camera:draw()
-  --love.graphics.setColor(255, 0, 100, 255)
-  --love.graphics.rectangle("line", self.x, self.y, self.w, self.h)
+  love.graphics.setColor(255, 255, 255, 150)
   love.graphics.draw(self.img, self.x, self.y)
 
   love.graphics.setColor(self.flash.color[1], self.flash.color[2], self.flash.color[3], self.flash.opacity)
