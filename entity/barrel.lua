@@ -15,6 +15,10 @@ function Barrel:initialize(world, x, y, w, h, properties)
 
   g = anim8.newGrid(193, 112, self.img:getWidth(), self.img:getHeight(), 105, 0)
   self.shiftedImg = anim8.newAnimation(g('1-1', 1), 1)
+
+  if self.shifted then
+    self.removed = true
+  end
 end
 
 function Barrel:shift()

@@ -4,11 +4,11 @@ return {
   tiledversion = "0.16.0",
   orientation = "orthogonal",
   renderorder = "right-down",
-  width = 65,
+  width = 78,
   height = 24,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 32,
+  nextobjectid = 34,
   properties = {},
   tilesets = {},
   layers = {
@@ -127,10 +127,10 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 3695.43,
-          y = 606.114,
-          width = 471.57,
-          height = 833.164,
+          x = 3695,
+          y = 606,
+          width = 705,
+          height = 833,
           rotation = 0,
           visible = true,
           properties = {}
@@ -144,6 +144,19 @@ return {
           y = 1439.43,
           width = 1140.08,
           height = 69.7402,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 32,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 4400.53,
+          y = -0.555459,
+          width = 144.528,
+          height = 693.796,
           rotation = 0,
           visible = true,
           properties = {}
@@ -164,8 +177,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 2302.98,
-          y = 194.323,
+          x = 62.3664,
+          y = 468.849,
           width = 64,
           height = 64,
           rotation = 0,
@@ -218,7 +231,9 @@ return {
           height = 231,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["shiftable"] = true
+          }
         },
         {
           id = 9,
@@ -231,7 +246,9 @@ return {
           height = 231,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["shiftable"] = false
+          }
         }
       }
     },
@@ -255,7 +272,24 @@ return {
           height = 112,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["shifted"] = true
+          }
+        },
+        {
+          id = 33,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1052,
+          y = 476,
+          width = 105,
+          height = 112,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["shifted"] = false
+          }
         }
       }
     },

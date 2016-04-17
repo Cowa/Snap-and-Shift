@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="65" height="24" tilewidth="64" tileheight="64" nextobjectid="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="78" height="24" tilewidth="64" tileheight="64" nextobjectid="34">
  <imagelayer name="bg">
   <image source="game.png" width="4403" height="1440"/>
  </imagelayer>
@@ -11,21 +11,39 @@
   <object id="14" x="1689.59" y="451.981" width="254.347" height="129"/>
   <object id="15" x="1945.24" y="378.012" width="186.867" height="129"/>
   <object id="16" x="2133" y="312" width="280.6" height="138"/>
-  <object id="20" x="3695.43" y="606.114" width="471.57" height="833.164"/>
+  <object id="20" x="3695" y="606" width="705" height="833"/>
   <object id="21" x="2555.78" y="1439.43" width="1140.08" height="69.7402"/>
+  <object id="32" x="4400.53" y="-0.555459" width="144.528" height="693.796"/>
  </objectgroup>
  <objectgroup name="player" visible="0">
-  <object id="2" x="2302.98" y="194.323" width="64" height="64"/>
+  <object id="2" x="62.3664" y="468.849" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="camera" visible="0">
   <object id="3" x="195" y="342" width="325" height="250"/>
  </objectgroup>
  <objectgroup name="pillars" visible="0">
-  <object id="7" x="338" y="356" width="66.226" height="231"/>
-  <object id="9" x="908" y="356" width="66.226" height="231"/>
+  <object id="7" x="338" y="356" width="66.226" height="231">
+   <properties>
+    <property name="shiftable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="9" x="908" y="356" width="66.226" height="231">
+   <properties>
+    <property name="shiftable" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="barrels" visible="0">
-  <object id="12" x="584" y="476" width="105" height="112"/>
+  <object id="12" x="584" y="476" width="105" height="112">
+   <properties>
+    <property name="shifted" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="33" x="1052" y="476" width="105" height="112">
+   <properties>
+    <property name="shifted" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="branches" visible="0">
   <object id="23" x="2573" y="574" width="72" height="78">

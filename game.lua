@@ -26,7 +26,7 @@ function Game:init()
   self.widthCamera = 1280
   self.heightCamera = 720
 
-  self.widthWorld = 5000
+  self.widthWorld = 4403
   self.heightWorld = 1440
 
   self.camera = gamera.new(0, 0, self.widthWorld, self.heightWorld)

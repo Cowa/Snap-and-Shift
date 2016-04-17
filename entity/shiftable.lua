@@ -11,7 +11,13 @@ function Shiftable:initialize(world, x, y, w, h, properties)
     x = x, y = y, w = w, h = h
   }
 
+  self.shiftable = properties["shiftable"]
+
   self.shifted = false
+
+  if properties["shifted"] ~= nil then
+    self.shifted = properties["shifted"]
+  end
 end
 
 function Shiftable:shift()

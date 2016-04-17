@@ -18,6 +18,8 @@ function Pillar:initialize(world, x, y, w, h, properties)
 end
 
 function Pillar:shift()
+  if not self.shiftable then return end
+
   if not self.shifted then
     self.w = 66
     self.h = 100
