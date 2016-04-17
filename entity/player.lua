@@ -5,6 +5,7 @@ local cache = require "cache"
 
 local Entity = require "entity/entity"
 local Block = require "entity/block"
+local Checkpoint = require "entity/checkpoint"
 local BlockingShiftable = require "entity/blocking-shiftable"
 
 local Player = class("Player", Entity)
@@ -18,6 +19,9 @@ function Player:initialize(world, x, y, camera)
 
   self.img = cache:getOrLoadImage("asset/player.png")
 
+  -- by default first position of player
+  self.lastCheckpoint = { x = x, y = y }
+
   self.camera = camera
 end
 
@@ -25,6 +29,8 @@ function Player:update(dt)
   self:changeVelocityByGravity(dt)
   self:changeVelocityByInput(dt)
   self:move(dt)
+
+  print(self.lastCheckpoint.x, self.lastCheckpoint.y)
 
   self.camera:update(dt)
 end
@@ -59,7 +65,11 @@ function Player:move(dt)
   local actualX, actualY, cols, len = self.world:move(self, futureX, futureY, self.filter)
 
   _.each(cols, function (i, e)
-    self:checkIfOnGround(e.normal.y)
+    if e.other:isInstanceOf(Checkpoint) then
+      self.lastCheckpoint = e.other
+    else
+      self:checkIfOnGround(e.normal.y)
+    end
   end)
 
   self.x = actualX
@@ -67,11 +77,15 @@ function Player:move(dt)
 end
 
 function Player:filter(other)
-  if other:isInstanceOf(Block)
-  or other:isInstanceOf(BlockingShiftable)
-  and not other.removed
+  if other:isInstanceOf(Checkpoint) then
+    return "cross"
+
+  elseif other:isInstanceOf(Block)
+      or other:isInstanceOf(BlockingShiftable)
+      and not other.removed
   then
     return "slide"
+
   end
 end
 

@@ -8,7 +8,7 @@ return {
   height = 24,
   tilewidth = 64,
   tileheight = 64,
-  nextobjectid = 30,
+  nextobjectid = 31,
   properties = {},
   tilesets = {},
   layers = {
@@ -142,7 +142,7 @@ return {
           shape = "rectangle",
           x = 2555.78,
           y = 1439.43,
-          width = 811.903,
+          width = 1140.08,
           height = 69.7402,
           rotation = 0,
           visible = true,
@@ -225,7 +225,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 959,
+          x = 908,
           y = 356,
           width = 66.226,
           height = 231,
@@ -368,6 +368,30 @@ return {
           y = 362,
           width = 262,
           height = 136,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "checkpoints",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 30,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 2130,
+          y = 194,
+          width = 77,
+          height = 103,
           rotation = 0,
           visible = true,
           properties = {}
